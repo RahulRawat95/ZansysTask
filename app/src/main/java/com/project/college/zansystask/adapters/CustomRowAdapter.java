@@ -64,7 +64,7 @@ public class CustomRowAdapter extends RecyclerView.Adapter<CustomRowAdapter.MyVi
         }
     }
 
-    public Bitmap getResizedBitmap(Bitmap image) {
+    public static Bitmap getResizedBitmap(Bitmap image) {
         int maxSize = 512;
         int width = image.getWidth();
         int height = image.getHeight();

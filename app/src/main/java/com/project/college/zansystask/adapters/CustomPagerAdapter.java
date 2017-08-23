@@ -1,6 +1,7 @@
 package com.project.college.zansystask.adapters;
 
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.RelativeLayout;
 
 import com.project.college.zansystask.R;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 /**
@@ -47,8 +49,13 @@ public class CustomPagerAdapter extends PagerAdapter {
 
         ImageView imageView = (ImageView) itemView.findViewById(R.id.pager_item_imageView);
         imageView.setImageURI(mImageUris.get(position));
+        try {
+            imageView.setImageBitmap(CustomRowAdapter.getResizedBitmap(BitmapFactory.decodeStream(mContext.getContentResolver().openInputStream(mImageUris.get(position)))));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
-        container.addView(itemView,position);
+        container.addView(itemView);
 
         return itemView;
     }
